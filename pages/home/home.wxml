@@ -1,0 +1,11 @@
+<view class="home-page-tabs">
+  <t-tabs defaultValue="{{0}}" bind:change="onHigerTabsChange" bind:click="onHigerTabsClick" t-class="custom-tabs">
+    <t-tab-panel label="最新动态" value="0" />
+    <t-tab-panel label="房屋转租" value="1" />
+  </t-tabs>
+  <!--
+  <t-tabs defaultValue="{{0}}" t-class="t-tabs" bind:change="onLowerTabsChange" theme="tag">
+    <t-tab-panel wx:for="{{tabList}}" wx:for-index="index" wx:key="index" label="{{item.text}}" value="{{item.key}}" />
+  </t-tabs>
+  -->
+</view>

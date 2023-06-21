@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/personal/personal",
+    "pages/message/message"
+  ],
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#1b26f7",
+    "list":[
+      {
+        "text": "首页",
+        "pagePath": "pages/home/home",
+        "iconPath": "",
+        "selectedIconPath": ""
+      },
+      {
+        "text": "消息",
+        "pagePath": "pages/message/message",
+        "iconPath": "",
+        "selectedIconPath": ""
+      },
+      {
+        "text": "个人中心",
+        "pagePath": "pages/personal/personal",
+        "iconPath": "",
+        "selectedIconPath": ""
+      }
+    ]
+  },
+
+  "usingComponents": {
+    "t-tabs": "tdesign-miniprogram/tabs/tabs",
+    "t-tab-panel": "tdesign-miniprogram/tab-panel/tab-panel"
+  }
+}
+
