@@ -3,6 +3,14 @@
     <t-tab-panel label="最新动态" value="0" />
     <t-tab-panel label="房屋转租" value="1" />
   </t-tabs>
+  <view class="welcome">
+    <block wx:if="{{isLogged}}">
+      <text class="welcome-text">欢迎用户：{{username}}</text>
+    </block>
+    <block wx:else>
+      <text class="welcome-text">请先登录</text>
+    </block>
+  </view>
   <!--
   <t-tabs defaultValue="{{0}}" t-class="t-tabs" bind:change="onLowerTabsChange" theme="tag">
     <t-tab-panel wx:for="{{tabList}}" wx:for-index="index" wx:key="index" label="{{item.text}}" value="{{item.key}}" />

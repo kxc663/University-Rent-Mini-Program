@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/personal/personal",
-    "pages/message/message"
+    "pages/message/message",
+    "pages/personal/login/login",
+    "pages/personal/profile/profile"
   ],
   "tabBar": {
     "color": "#000000",
@@ -22,7 +23,7 @@
       },
       {
         "text": "个人中心",
-        "pagePath": "pages/personal/personal",
+        "pagePath": "pages/personal/profile/profile",
         "iconPath": "",
         "selectedIconPath": ""
       }
