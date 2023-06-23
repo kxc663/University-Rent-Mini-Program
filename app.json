@@ -3,7 +3,8 @@
     "pages/home/home",
     "pages/message/message",
     "pages/personal/login/login",
-    "pages/personal/profile/profile"
+    "pages/personal/profile/profile",
+    "pages/create/create"
   ],
   "tabBar": {
     "color": "#000000",

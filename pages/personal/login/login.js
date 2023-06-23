@@ -30,15 +30,19 @@ Page({
     db.collection('users').where({
       username: username
     }).get().then(res => {
-      if(res.data[0].password == password){
-        app.globalData.isLogged = true;
-        app.globalData.username = username;
-        wx.reLaunch({
-          url: '/pages/home/home',
-        });
-        console.log('登陆成功');
-      } else{
-        console.log('登陆失败');
+      if (res.data.length > 0) {
+        if (res.data[0].password === password) {
+          app.globalData.isLogged = true;
+          app.globalData.username = username;
+          wx.reLaunch({
+            url: '/pages/home/home',
+          });
+          console.log('登录成功');
+        } else {
+          this.showPopUp('注意', '用户名或密码错误，请重试', false);
+        }
+      } else {
+        this.showPopUp('注意', '用户名或密码错误，请重试', false);
       }
     });
   },
@@ -47,49 +51,46 @@ Page({
       username,
       password
     } = this.data;
-    if (username.includes('@andrew.cmu.edu') && password.length >= 8) {
-      console.log('合法邮箱和密码');
-      db.collection('users').add({
-        data: {
-          username: username,
-          password: password
+    db.collection('users').where({
+      username: username
+    }).get().then(res => {
+      if (res.data.length > 0) {
+        this.showPopUp('注意', '该用户已存在，请使用其他用户名注册', false);
+      } else {
+        if (username.includes('@andrew.cmu.edu') && password.length >= 8) {
+          this.showPopUp('注册成功', '返回去登录吧！', false);
+          db.collection('users').add({
+            data: {
+              username: username,
+              password: password
+            }
+          }).then(res => console.log(res));
+        } else if (!username.includes('@andrew.cmu.edu')) {
+          this.showPopUp('注意', '邮箱必须是CMU.edu的邮箱', false);
+        } else {
+          this.showPopUp('注意', '密码长度需要至少8位', false);
         }
-      }).then(res => console.log(res));
-    } else if (!username.includes('@andrew.cmu.edu')) {
-      console.log('非法邮箱');
-    } else {
-      console.log('密码未符合长度要求')
-    }
+      }
+    });
   },
+
   onLoad(options) {
 
   },
 
-  onReady() {
-
-  },
-
   onShow() {
-    if(app.globalData.isLogged){
+    if (app.globalData.isLogged) {
       wx.reLaunch({
         url: '/pages/personal/profile/profile',
       })
     }
   },
 
-  onHide() {
-
-  },
-
-  onUnload() {
-
-  },
-
-  onPullDownRefresh() {
-
-  },
-
-  onReachBottom() {
-
+  showPopUp(title, content, hasCancel) {
+    wx.showModal({
+      title: title,
+      content: content,
+      showCancel: hasCancel
+    });
   }
 })
