@@ -2,9 +2,9 @@
   "pages": [
     "pages/home/home",
     "pages/message/message",
+    "pages/create/create",
     "pages/personal/login/login",
-    "pages/personal/profile/profile",
-    "pages/create/create"
+    "pages/personal/profile/profile"
   ],
   "tabBar": {
     "color": "#000000",

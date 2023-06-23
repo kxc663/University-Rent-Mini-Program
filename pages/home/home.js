@@ -1,3 +1,9 @@
+wx.cloud.init({
+  env: 'cloud1-3gm1islrf702afb9'
+});
+const db = wx.cloud.database({
+  env: 'cloud1-3gm1islrf702afb9'
+});
 const app = getApp();
 Page({
   data: {
@@ -6,9 +12,11 @@ Page({
       zIndex: 2,
     },
     isLogged: false,
-    username: ''
+    username: '',
+    posts: {}
   },
   onLoad() {
+    this.getPosts();
     let isLogged = app.globalData.isLogged;
     if(isLogged){
       this.setData({
@@ -47,5 +55,14 @@ Page({
       });
     }
     console.log("+ clicked");
+  },
+  getPosts() {
+    db.collection('posts').get().then(res => {
+      this.setData({
+        posts: res.data
+      });
+    }).catch(err => {
+      console.error(err);
+    });
   }
 });

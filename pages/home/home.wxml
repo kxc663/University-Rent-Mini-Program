@@ -3,7 +3,7 @@
     <t-tab-panel label="最新动态" value="0" />
     <t-tab-panel label="房屋转租" value="1" />
   </t-tabs>
-  <view class="welcome">
+  <view class="welcome" style="text-align: center;">
     <block wx:if="{{isLogged}}">
       <text class="welcome-text">欢迎用户：{{username}}</text>
     </block>
@@ -11,6 +11,21 @@
       <text class="welcome-text">请先登录</text>
     </block>
   </view>
+  <view class="posts" style="padding-left: 50rpx;">
+    <text>\n</text>
+    <block wx:for="{{posts}}" wx:key="index">
+      <view class="post-item">
+        <text style="font-size: larger; font-weight: bold;">{{item.title}}</text>
+        <text>\n</text>
+        <text style="font-size: medium;">{{item.detail}}</text>
+        <text>\n</text>
+        <text style="font-size: small; color: #ccc;">{{item.username}}</text>
+        <view class="space"></view>
+        <text>\n</text>
+      </view>
+    </block>
+  </view>
+
   <view class="float-button-container">
     <view class="float-button" bindtap="floatButtonClicked">
       <text class="float-button-text">+</text>

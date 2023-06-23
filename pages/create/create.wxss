@@ -5,20 +5,21 @@
 }
 
 .space {
-  border-top: 1px solid #ccc;
+  border-top: 1rpx solid #ccc;
   margin: 3vh 0;
 }
+
 .selectButtonContainer {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position:fixed;
+  position: fixed;
 }
 
 .selectButton {
-  width: 60px;
-  height: 60px;
-  border: 1px dashed #ccc;
+  width: 120rpx;
+  height: 120rpx;
+  border: 1rpx dashed #ccc;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,18 +27,18 @@
 }
 
 .plusIcon {
-  font-size: 24px;
+  font-size: 50rpx;
   color: #ccc;
 }
 
 .buttonText {
-  font-size: 12px;
+  font-size: 30rpx;
   color: #ccc;
 }
 
 .submitButton {
   position: fixed;
-  height: 10vh;
+  height: 100rpx;
   width: 90%;
   left: 50%;
   transform: translateX(-50%);
@@ -45,4 +46,8 @@
   color: #fff;
   border: none;
   bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

@@ -2,8 +2,8 @@
   position: fixed;
   bottom: 5vh;
   right: 5vw;
-  width: 10vh;
-  height: 10vh;
+  width: 120rpx;
+  height: 120rpx;
   background-color: #001aff;
   border-radius: 50%;
   display: flex;
@@ -14,5 +14,10 @@
 
 .float-button-text {
   color: #ffffff;
-  font-size: 30px;
+  font-size: 70rpx;
+}
+
+.space {
+  border-top: 1rpx solid #ccc;
+  margin: 3vh 0;
 }
