@@ -33,5 +33,9 @@ Page({
   },
   onLowerTabsChange(event) {
     console.log(event.detail);
+  },
+  floatButtonClicked(event){
+    console.log(event.detail);
+    console.log("+ clicked");d
   }
 });

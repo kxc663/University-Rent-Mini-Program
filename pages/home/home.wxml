@@ -11,6 +11,11 @@
       <text class="welcome-text">请先登录</text>
     </block>
   </view>
+  <view class="float-button-container">
+    <view class="float-button" bindtap="floatButtonClicked">
+      <text class="float-button-text">+</text>
+    </view>
+  </view>
   <!--
   <t-tabs defaultValue="{{0}}" t-class="t-tabs" bind:change="onLowerTabsChange" theme="tag">
     <t-tab-panel wx:for="{{tabList}}" wx:for-index="index" wx:key="index" label="{{item.text}}" value="{{item.key}}" />
