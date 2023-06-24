@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/create/create",
     "pages/home/home",
     "pages/message/message",
-    "pages/create/create",
+    
     "pages/personal/login/login",
     "pages/personal/profile/profile"
   ],

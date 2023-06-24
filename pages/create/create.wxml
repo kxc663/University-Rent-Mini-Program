@@ -1,15 +1,16 @@
 <view class="createPage">
-  <input placeholder="请输入标题" bindinput="inputTitle" style="font-size: larger;"/>
+  <input placeholder="请输入标题" bindinput="inputTitle" style="font-size: larger;" />
   <view class="space"></view>
   <textarea placeholder="请输入详情" bindinput="inputDetail"></textarea>
   <view class="selectButtonContainer">
+    <view class="imageContainer" wx:for="{{images}}" wx:key="index">
+      <image class="image" src="{{item}}" mode="aspectFit"></image>
+    </view>
     <view class="selectButton" bindtap="chooseImage">
       <text class="plusIcon">+</text>
       <text class="buttonText">选择图片</text>
     </view>
+    <text style="font-size: 30rpx; color: #ccc; margin-top: 20rpx;"> 提示：最多仅支持6张图片与视频，视频最长15秒 </text>
   </view>
-  <view wx:for="{{images}}" wx:key="{{index}}">
-    <image src="{{item}}" mode="aspectFit" width="100" height="100"></image>
-  </view>
-  <button class="submitButton" bindtap="submitData">提交</button>
+  <button class="submitButton" bindtap="submitData">发布</button>
 </view>
