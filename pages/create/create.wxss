@@ -9,7 +9,7 @@
   margin: 3vh 0;
 }
 
-.selectButtonContainer {
+.selectButton-container {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -17,7 +17,7 @@
   flex-wrap: wrap;
 }
 
-.selectButton {
+.select-button {
   width: 150rpx;
   height: 150rpx;
   border: 1rpx dashed #ccc;
@@ -28,17 +28,17 @@
   margin-top: 10rpx;
 }
 
-.plusIcon {
+.plus-icon {
   font-size: 50rpx;
   color: #ccc;
 }
 
-.buttonText {
+.button-text {
   font-size: 30rpx;
   color: #ccc;
 }
 
-.submitButton {
+.submit-button {
   position: fixed;
   height: 100rpx;
   width: 90%;

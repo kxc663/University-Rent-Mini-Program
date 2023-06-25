@@ -1,0 +1,33 @@
+.detail-page {
+  padding: 25rpx;
+}
+
+.page-top-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button-container {
+  display: flex;
+  gap: 10rpx;
+}
+
+.follow-button, .message-button {
+  width: 85rpx;
+  font-size: 30rpx;
+}
+
+.post-title {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.post-detail-text {
+  font-size: medium;
+}
+
+.post-username {
+  font-size: small;
+  color: #ccc;
+}

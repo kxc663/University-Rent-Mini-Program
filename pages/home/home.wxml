@@ -14,7 +14,7 @@
   <view class="posts" style="padding-left: 50rpx;">
     <text>\n</text>
     <block wx:for="{{posts}}" wx:key="index">
-      <view class="post-item">
+      <view class="post-item" bindtap="viewPostDetail" data-post-id="{{index}}">
         <text style="font-size: larger; font-weight: bold;">{{item.title}}</text>
         <text>\n</text>
         <text style="font-size: medium;">{{item.detail}}</text>
