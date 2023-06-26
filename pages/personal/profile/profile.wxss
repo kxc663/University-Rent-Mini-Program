@@ -1,0 +1,41 @@
+.profile-page {
+  padding-top: 70rpx;
+}
+.profile-picture{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-name {
+  margin-top: 30rpx;
+  text-align: center;
+  font-size: medium;
+}
+
+.profile-detail {
+  display: flex;
+  justify-content: center;
+}
+
+.followings,
+.followers {
+  margin: 0 10px;
+}
+
+.following-button,
+.follower-button {
+  background-color: transparent;
+  display: inline-block;
+  outline: none;
+  font-size: small;
+}
+
+.following-button::after,
+.follower-button::after {
+  border: none;
+}
+
+.divider-line {
+  border-top: 1rpx solid #ccc;
+}

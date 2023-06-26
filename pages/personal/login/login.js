@@ -34,6 +34,8 @@ Page({
         if (res.data[0].password === password) {
           app.globalData.isLogged = true;
           app.globalData.username = username;
+          app.globalData.following = res.data[0].following;
+          app.globalData.follower = res.data[0].follower;
           wx.reLaunch({
             url: '/pages/home/home',
           });

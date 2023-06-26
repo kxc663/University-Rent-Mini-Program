@@ -1,7 +1,5 @@
-.createPage {
-  position: fixed;
-  left: 5vw;
-  right: 5vw;
+.create-page {
+  margin: 0 50rpx;
 }
 
 .space {

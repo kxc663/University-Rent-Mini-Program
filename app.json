@@ -5,7 +5,9 @@
     "pages/create/create",
     "pages/detail/detail",
     "pages/personal/login/login",
-    "pages/personal/profile/profile"
+    "pages/personal/profile/profile",
+    "pages/personal/profile/follower/follower",
+    "pages/personal/profile/following/following"
   ],
   "tabBar": {
     "color": "#000000",

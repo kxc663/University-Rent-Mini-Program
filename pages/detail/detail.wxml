@@ -6,6 +6,7 @@
     <view class="button-container">
       <button class="follow-button">+</button>
       <button class="message-button">私</button>
+      <button class="collect-button">收</button>
     </view>
   </view>
   <text>\n</text>

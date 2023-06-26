@@ -1,6 +1,8 @@
 App({
   globalData: {
     isLogged: false,
-    username: null
+    username: null,
+    follower: 0,
+    following: 0
   }
 })

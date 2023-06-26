@@ -1,1 +1,23 @@
-<text> profile page </text>
+<view class="profile-page">
+  <view class="profile-picture">
+    <image src="/images/profile-picture.jpg" style="width: 250rpx; height: 250rpx;"></image>
+  </view>
+  <view class="user-name">
+    {{username}}
+  </view>
+  <view class="profile-detail">
+    <view class="followings">
+      <button class="following-button" bindtap="clickFollowing"> 关注 {{followingNumber}}</button>
+    </view>
+    <view class="followers">
+      <button class="follower-button" bindtap="clickFollower"> 粉丝 {{followerNumber}}</button>
+    </view>
+  </view>
+  <view class="divider-line"></view>
+  <view class="my-posts">
+    <t-tabs defaultValue="{{0}}" bind:change="onTabsChange" bind:click="onTabsClick" t-class="custom-tabs">
+    <t-tab-panel label="我的发布" value="0" />
+    <t-tab-panel label="我的收藏" value="1" />
+  </t-tabs>
+  </view>
+</view>
