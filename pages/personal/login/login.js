@@ -36,6 +36,7 @@ Page({
           app.globalData.username = username;
           app.globalData.following = res.data[0].following;
           app.globalData.follower = res.data[0].follower;
+          app.globalData.userId = res.data[0]._id;
           wx.reLaunch({
             url: '/pages/home/home',
           });

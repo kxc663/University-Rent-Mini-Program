@@ -16,6 +16,7 @@
 .follow-button, .message-button, .collect-button {
   width: 85rpx;
   font-size: 30rpx;
+  background-color: #FFFFFF;
 }
 
 .post-title {

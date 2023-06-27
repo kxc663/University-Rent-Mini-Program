@@ -14,10 +14,22 @@
     </view>
   </view>
   <view class="divider-line"></view>
-  <view class="my-posts">
+  <view class="posts">
     <t-tabs defaultValue="{{0}}" bind:change="onTabsChange" bind:click="onTabsClick" t-class="custom-tabs">
-    <t-tab-panel label="我的发布" value="0" />
-    <t-tab-panel label="我的收藏" value="1" />
-  </t-tabs>
+      <t-tab-panel label="我的发布" value="0" />
+      <t-tab-panel label="我的收藏" value="1">
+        <view class="my-collects">
+          <block wx:for="{{collectList}}" wx:key="index">
+            <view class="collect-items" bindtap="viewCollectDetail" data-post-id="{{index}}">
+              <view class="collect-title" style="font-size: small; font-weight: bold;">{{item.title}}</view>
+              <view class="collect-title" style="font-size: small;">{{item.detail}}</view>
+              <view class="collect-username" style="font-size: small; color: #ccc;">{{item.username}}</view>
+            </view>
+            <view class="divider-line"></view>
+          </block>
+          <view wx:if="{{collectList.length === 0}}" class="empty-message">暂无收藏的帖子</view>
+        </view>
+      </t-tab-panel>
+    </t-tabs>
   </view>
 </view>

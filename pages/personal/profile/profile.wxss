@@ -1,7 +1,8 @@
 .profile-page {
   padding-top: 70rpx;
 }
-.profile-picture{
+
+.profile-picture {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,4 +39,8 @@
 
 .divider-line {
   border-top: 1rpx solid #ccc;
+}
+
+.my-collects {
+  margin-left: 50rpx;
 }
