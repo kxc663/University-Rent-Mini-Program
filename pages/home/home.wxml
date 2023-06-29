@@ -19,6 +19,10 @@
         <text>\n</text>
         <text style="font-size: medium;">{{item.detail}}</text>
         <text>\n</text>
+        <view class="post-images" wx:for='{{item.images}}' wx:for-item="item" wx:key="index">
+          <image class="image" src="{{'cloud://cloud1-3gm1islrf702afb9.636c-cloud1-3gm1islrf702afb9-1318853138/imageUpload/' + item + '.png'}}" mode="aspectFit"></image>
+        </view>
+        <text>\n</text>
         <text style="font-size: small; color: #ccc;">{{item.username}}</text>
         <view class="space"></view>
         <text>\n</text>

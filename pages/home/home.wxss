@@ -21,3 +21,15 @@
   border-top: 1rpx solid #ccc;
   margin: 3vh 0;
 }
+
+.post-images {
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 10rpx;
+  margin-top: 10rpx;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}

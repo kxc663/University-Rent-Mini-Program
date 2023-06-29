@@ -3,7 +3,7 @@
   <view class="space"></view>
   <textarea placeholder="请输入详情" bindinput="inputDetail"></textarea>
   <view class="selectButton-container">
-    <view class="imageContainer" wx:for="{{images}}" wx:key="index">
+    <view class="imageContainer" wx:for="{{tempImageList}}" wx:key="index">
       <image class="image" src="{{item}}" mode="aspectFit"></image>
     </view>
     <view class="select-button" bindtap="chooseImage">

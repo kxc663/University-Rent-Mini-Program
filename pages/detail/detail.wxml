@@ -13,4 +13,6 @@
   <text class="post-title">{{post.title}}</text>
   <text>\n</text>
   <text class="post-detail-text">{{post.detail}}</text>
+  <text>\n</text>
+
 </view>

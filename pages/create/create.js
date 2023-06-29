@@ -10,7 +10,8 @@ Page({
   data: {
     title: '',
     detail: '',
-    images: []
+    imageList: [],
+    tempImageList: []
   },
   inputTitle(e) {
     this.setData({
@@ -23,7 +24,7 @@ Page({
     });
   },
   chooseImage() {
-    const images = this.data.images;
+    const images = this.data.tempImageList;
     if (images.length >= 6) {
       wx.showModal({
         title: '注意',
@@ -39,12 +40,12 @@ Page({
       maxDuration: 15,
       success: (res) => {
         const tempFile = res.tempFiles[0];
-        const images = this.data.images;
+        const images = this.data.tempImageList;
         images.push(tempFile.tempFilePath);
         this.setData({
-          images: images
+          tempImageList: images
         });
-        this.uploadMedia(tempFile);
+        this.uploadMedia(tempFile.tempFilePath);
       },
       fail: (error) => {
         console.error(error);
@@ -52,23 +53,49 @@ Page({
     });
   },
   uploadMedia(fileToUpload) {
-
+    let fileName = this.getRandomFileName();
+    wx.cloud.uploadFile({
+      filePath: fileToUpload,
+      cloudPath: 'imageUpload/' + fileName + '.png',
+      success(res) {
+        console.log('图片上传成功');
+      },
+      fail(error) {
+        console.error('图片上传失败', error);
+      }
+    })
+    let images = this.data.imageList;
+    images.push(fileName);
+    this.setData({
+      imageList: images
+    });
   },
   submitData() {
     const {
       title,
-      detail
+      detail,
+      imageList
     } = this.data;
     let username = app.globalData.username;
     db.collection('posts').add({
       data: {
         username: username,
         title: title,
-        detail: detail
+        detail: detail,
+        images: imageList
       }
     }).then(res => console.log(res));
     wx.reLaunch({
       url: '/pages/home/home',
     });
+  },
+  getRandomFileName() {
+    let str = '';
+    let chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for (let i = 0; i < 15; i++) {
+      str += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    str += Date.now().toString(36);
+    return str.slice(0, 15);
   }
 })
