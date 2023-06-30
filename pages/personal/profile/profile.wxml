@@ -1,35 +1,42 @@
 <view class="profile-page">
-  <view class="profile-picture">
-    <image src="/images/profile-picture.jpg" style="width: 250rpx; height: 250rpx;"></image>
-  </view>
-  <view class="user-name">
-    {{username}}
-  </view>
-  <view class="profile-detail">
-    <view class="followings">
-      <button class="following-button" bindtap="clickFollowing"> 关注 {{followingNumber}}</button>
+  <view class="general-profile">
+    <view class="profile-picture">
+      <image src="/images/profile-picture.jpg" style="width: 250rpx; height: 250rpx;"></image>
     </view>
-    <view class="followers">
-      <button class="follower-button" bindtap="clickFollower"> 粉丝 {{followerNumber}}</button>
+    <view class="user-name">
+      {{username}}
     </view>
-  </view>
-  <view class="divider-line"></view>
-  <view class="posts">
+    <view class="profile-detail">
+      <view class="followings">
+        <button class="following-button" bindtap="clickFollowing"> 关注 {{followingNumber}}</button>
+      </view>
+      <view class="followers">
+        <button class="follower-button" bindtap="clickFollower"> 粉丝 {{followerNumber}}</button>
+      </view>
+    </view>
+    <view class="divider-line"></view>
     <t-tabs defaultValue="{{0}}" bind:change="onTabsChange" bind:click="onTabsClick" t-class="custom-tabs">
       <t-tab-panel label="我的发布" value="0" />
-      <t-tab-panel label="我的收藏" value="1">
-        <view class="my-collects">
-          <block wx:for="{{collectList}}" wx:key="index">
-            <view class="collect-items" bindtap="viewCollectDetail" data-post-id="{{index}}">
-              <view class="collect-title" style="font-size: small; font-weight: bold;">{{item.title}}</view>
-              <view class="collect-title" style="font-size: small;">{{item.detail}}</view>
-              <view class="collect-username" style="font-size: small; color: #ccc;">{{item.username}}</view>
-            </view>
-            <view class="divider-line"></view>
-          </block>
-          <view wx:if="{{collectList.length === 0}}" class="empty-message">暂无收藏的帖子</view>
-        </view>
-      </t-tab-panel>
+      <t-tab-panel label="我的收藏" value="1" />
     </t-tabs>
+  </view>
+  <view class="my-posts" wx:if="{{currentTab == 0}}">
+    暂无发布的帖子
+  </view>
+  <view class="my-collects" wx:if="{{currentTab == 1}}">
+    <block wx:for="{{collectList}}" wx:key="index">
+      <view class="collect-items" bindtap="viewCollectDetail" data-post-id="{{index}}">
+        <view class="collect-title" style="font-size: small; font-weight: bold;">{{item.title}}</view>
+        <view class="collect-title" style="font-size: small;">{{item.detail}}</view>
+        <view class="image-container">
+          <view class="collect-images" wx:for='{{item.images}}' wx:for-item="img" wx:key="index" wx:if="{{index < 3}}" style="width:30%;">
+            <image class="image" src="{{'cloud://cloud1-3gm1islrf702afb9.636c-cloud1-3gm1islrf702afb9-1318853138/imageUpload/' + img + '.png'}}" mode="aspectFit"></image>
+          </view>
+        </view>
+        <view class="collect-username" style="font-size: small; color: #ccc;">{{item.username}}</view>
+      </view>
+      <view class="divider-line"></view>
+    </block>
+    <view wx:if="{{collectList.length === 0}}" class="empty-message">暂无收藏的帖子</view>
   </view>
 </view>

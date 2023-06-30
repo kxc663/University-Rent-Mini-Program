@@ -11,6 +11,18 @@
       <text class="button-text">选择图片</text>
     </view>
     <text style="font-size: 30rpx; color: #ccc; margin-top: 20rpx;"> 提示：最多仅支持6张图片与视频，视频最长15秒 </text>
+    <view>
+      <text>请选择发布类别：</text>
+      <view class="options-container">
+        <picker bindchange="onPickerChange" value="{{selectedOptionIndex}}" range="{{options}}" mode="selector">
+          <view class="picker">
+            <text>{{options[selectedOptionIndex]}}</text>
+          </view>
+          
+        </picker>
+        <view class="arrow"></view>
+      </view>
+    </view>
   </view>
   <button class="submit-button" bindtap="submitData">发布</button>
 </view>

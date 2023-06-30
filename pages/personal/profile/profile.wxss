@@ -1,5 +1,25 @@
 .profile-page {
   padding-top: 70rpx;
+  position: relative;
+  height: 100vh;
+}
+
+.general-profile {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #fff;
+}
+
+.posts{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.my-collects {
+  height: calc(100vh - 60rpx);
+  overflow-y: auto;
 }
 
 .profile-picture {
@@ -41,6 +61,21 @@
   border-top: 1rpx solid #ccc;
 }
 
-.my-collects {
+.my-collects, .my-posts {
   margin-left: 50rpx;
+}
+
+.image-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.collect-images {
+  display: flex;
+  justify-content:flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 10rpx;
+  margin-top: -150rpx;
+  margin-bottom: -150rpx;
 }

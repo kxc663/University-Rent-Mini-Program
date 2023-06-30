@@ -10,7 +10,8 @@ Page({
     username: 'Test',
     followingNumber: 0,
     followerNumber: 0,
-    collectList: []
+    collectList: [],
+    currentTab: 0
   },
   onShow() {
     if (!app.globalData.isLogged) {
@@ -36,11 +37,12 @@ Page({
       url: './follower/follower',
     })
   },
-  onTabsClick(event) {
-    console.log(`Click tab, tab-panel value is ${event.detail.value}.`);
-  },
+
   onTabsChange(event) {
     const currentTab = event.detail.value;
+    this.setData({
+      currentTab: currentTab
+    });
     console.log(currentTab);
     if (currentTab === "1") {
       this.updateCollects();

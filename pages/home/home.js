@@ -19,7 +19,8 @@ Page({
     },
     isLogged: false,
     username: '',
-    posts: {}
+    posts: {},
+    currentTab: 0
   },
   onLoad() {
     this.getPosts();
@@ -37,17 +38,16 @@ Page({
     }
   },
   onHigerTabsChange(event) {
-    console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
+    this.setData({
+      currentTab: event.detail.value
+    });
+    console.log(this.data.currentTab);
   },
-  onHigerTabsClick(event) {
-    console.log(`Click tab, tab-panel value is ${event.detail.value}.`);
-  },
-  onStickyScroll(event) {
-    console.log(event.detail);
-  },
+
   onLowerTabsChange(event) {
     console.log(event.detail);
   },
+  
   floatButtonClicked(event) {
     if (this.data.isLogged) {
       wx.reLaunch({

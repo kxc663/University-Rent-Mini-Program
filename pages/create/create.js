@@ -11,7 +11,17 @@ Page({
     title: '',
     detail: '',
     imageList: [],
-    tempImageList: []
+    selectedOptionIndex: 0,
+    tempImageList: [],
+    options: ['闲置出售', '房屋转租'],
+  },
+  onPickerChange(event) {
+    const index = event.detail.value;
+    this.setData({
+      selectedOptionIndex: index
+    });
+    console.log(index);
+    console.log(this.data.options[index]);
   },
   inputTitle(e) {
     this.setData({
@@ -74,7 +84,8 @@ Page({
     const {
       title,
       detail,
-      imageList
+      imageList,
+      selectedOptionIndex
     } = this.data;
     let username = app.globalData.username;
     db.collection('posts').add({
@@ -82,7 +93,8 @@ Page({
         username: username,
         title: title,
         detail: detail,
-        images: imageList
+        images: imageList,
+        optionIndex: selectedOptionIndex
       }
     }).then(res => console.log(res));
     wx.reLaunch({
