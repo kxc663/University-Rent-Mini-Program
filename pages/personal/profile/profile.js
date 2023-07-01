@@ -8,10 +8,11 @@ const app = getApp();
 Page({
   data: {
     username: 'Test',
-    followingNumber: 0,
-    followerNumber: 0,
+    followingList: [],
+    followerList: [],
     collectList: [],
-    currentTab: 0
+    postList: [],
+    currentTab: 0,
   },
   onShow() {
     if (!app.globalData.isLogged) {
@@ -19,12 +20,21 @@ Page({
         url: '/pages/personal/login/login',
       })
     } else {
-      this.setData({
-        username: app.globalData.username,
-        followingNumber: app.globalData.following,
-        followerNumber: app.globalData.follower,
+      db.collection('users').where({
+        username: app.globalData.username
+      }).get().then(res => {
+        let followingList = [];
+        let followerList = [];
+        followingList = res.data[0].following_list;
+        followerList = res.data[0].follower_list;
+        this.setData({
+          username: app.globalData.username,
+          followingList: followingList,
+          followerList: followerList,
+        });
       });
       this.updateCollects();
+      this.updatePosts();
     }
   },
   clickFollowing() {
@@ -44,15 +54,29 @@ Page({
       currentTab: currentTab
     });
     console.log(currentTab);
-    if (currentTab === "1") {
+    if (currentTab === "0") {
+      this.updatePosts();
+    } else if (currentTab === "1") {
       this.updateCollects();
     }
     console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
   },
   viewCollectDetail(event) {
-    console.log( event.currentTarget.dataset);
+    console.log(event.currentTarget.dataset);
     wx.navigateTo({
       url: '/pages/detail/detail?post=' + JSON.stringify(this.data.collectList[event.currentTarget.dataset.postId])
+    });
+  },
+  updatePosts() {
+    const username = app.globalData.username;
+    db.collection('posts').where({
+      username: username
+    }).get().then(res => {
+      this.setData({
+        postList: res.data
+      });
+    }).catch(err => {
+      console.error('获取发布的帖子失败', err);
     });
   },
   updateCollects() {

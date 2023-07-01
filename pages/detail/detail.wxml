@@ -4,17 +4,17 @@
       <text class="post-username">{{post.username}}</text>
     </view>
     <view class="button-container">
-      <button class="follow-button" bindtap="clickFollow">+</button>
+      <button class="follow-button" bindtap="clickFollow" style="background-color: {{ isUserFollowed ? '#FFA500' : '#FFFFFF' }}" disabled="{{ isSelf }}">+</button>
       <button class="message-button" bindtap="clickMessage">私</button>
       <button class="collect-button" bindtap="clickCollect" style="background-color: {{ isPostCollected ? '#FFA500' : '#FFFFFF' }}">收</button>
     </view>
   </view>
   <text>\n</text>
-  <text class="post-title">{{post.title}}</text>
+  <text class="post-title">{{ post.title }}</text>
   <text>\n</text>
-  <text class="post-detail-text">{{post.detail}}</text>
+  <text class="post-detail-text">{{ post.detail }}</text>
   <text>\n</text>
-  <view class="post-images" wx:for='{{post.images}}' wx:for-item="item" wx:key="index">
+  <view class="post-images" wx:for='{{ post.images }}' wx:for-item="item" wx:key="index">
     <image class="image" src="{{'cloud://cloud1-3gm1islrf702afb9.636c-cloud1-3gm1islrf702afb9-1318853138/imageUpload/' + item + '.png'}}" mode="aspectFit"></image>
   </view>
 

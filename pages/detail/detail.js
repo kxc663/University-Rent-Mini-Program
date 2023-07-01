@@ -9,7 +9,9 @@ const app = getApp();
 Page({
   data: {
     post: {},
-    istPostCollected: false
+    istPostCollected: false,
+    isUserFollowed: false,
+    isSelf: false
   },
   onLoad: function (options) {
     var post = JSON.parse(options.post);
@@ -18,6 +20,7 @@ Page({
     });
     if (app.globalData.isLogged) {
       this.checkIfPostCollected();
+      this.checkIfUserFollowed();
     }
   },
   checkIfPostCollected: function () {
@@ -26,6 +29,23 @@ Page({
       this.setData({
         isPostCollected: collectList.includes(this.data.post._id)
       });
+    }).catch(err => console.error('获取用户信息失败', err));
+  },
+  checkIfUserFollowed: function () {
+    db.collection('users').where({
+      username: app.globalData.username
+    }).get().then(res => {
+      const followList = res.data[0].following_list || [];
+      if (this.data.post.username == app.globalData.username) {
+        this.setData({
+          isSelf: true,
+          isUserFollowed: true
+        })
+      } else {
+        this.setData({
+          isUserFollowed: followList.includes(this.data.post.username)
+        })
+      }
     }).catch(err => console.error('获取用户信息失败', err));
   },
   clickCollect() {
@@ -77,6 +97,42 @@ Page({
   clickFollow() {
     if (!app.globalData.isLogged) {
       this.showPopUp('请先登陆', '关注功能仅限登陆用户', false);
+    } else {
+      db.collection('users').where({
+        username: app.globalData.username
+      }).get().then(res => {
+        const followList = res.data[0].following_list || [];
+        if (followList.includes(this.data.post.username)) {
+          const updatedFollowList = followList.filter(followedUsername => followedUsername !== this.data.post.username);
+          db.collection('users').doc(app.globalData.userId).update({
+            data: {
+              following_list: updatedFollowList
+            },
+            success: res => {
+              this.setData({
+                isUserFollowed: false
+              });
+              console.log('取消关注成功');
+            },
+            fail: err => console.error('取消关注失败', err)
+          });
+        } else {
+          followList.push(this.data.post.username);
+          db.collection('users').doc(app.globalData.userId).update({
+            data: {
+              following_list: followList
+            },
+            success: res => {
+              this.setData({
+                isUserFollowed: true
+              });
+              console.log('关注成功');
+            },
+            fail: err => console.error('关注失败', err)
+          });
+        }
+      });
+      this.checkIfUserFollowed();
     }
   },
   showPopUp(title, content, hasCancel) {
