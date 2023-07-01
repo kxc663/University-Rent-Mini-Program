@@ -1,0 +1,17 @@
+<view class="following-page">
+  <view class="my-following">
+    <block wx:for="{{followingList}}" wx:key="index">
+      <view class="my-following-list">
+        <view class="following-profile-picture">
+          <image src="/images/profile-picture.jpg" style="width: 100rpx; height: 100rpx;"></image>
+        </view>
+        <view class="username-container">
+          <view class="following-username">
+            {{item}}
+          </view>
+        </view>
+      </view>
+      <view class="divider-line"></view>
+    </block>
+  </view>
+</view>

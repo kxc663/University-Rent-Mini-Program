@@ -1,0 +1,18 @@
+.divider-line {
+  border-top: 1rpx solid #ccc;
+}
+
+.my-following-list {
+  margin-left: 20rpx;
+  margin-top: 15rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.username-container {
+  margin-left: 30rpx;
+  margin-top: -5rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
