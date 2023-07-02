@@ -13,7 +13,7 @@ Page({
     isUserFollowed: false,
     isSelf: false
   },
-  onLoad: function (options) {
+  onLoad(options) {
     var post = JSON.parse(options.post);
     this.setData({
       post: post
@@ -23,7 +23,7 @@ Page({
       this.checkIfUserFollowed();
     }
   },
-  checkIfPostCollected: function () {
+  checkIfPostCollected() {
     db.collection('users').doc(app.globalData.userId).get().then(res => {
       const collectList = res.data.collect_list || [];
       this.setData({
@@ -31,7 +31,7 @@ Page({
       });
     }).catch(err => console.error('获取用户信息失败', err));
   },
-  checkIfUserFollowed: function () {
+  checkIfUserFollowed() {
     db.collection('users').where({
       username: app.globalData.username
     }).get().then(res => {
@@ -134,6 +134,33 @@ Page({
       });
       this.checkIfUserFollowed();
     }
+  },
+  deletePost() {
+    const postId = this.data.post._id;
+    const postImage = this.data.post.images;
+
+    db.collection('posts').doc(postId).remove()
+      .then(() => {
+        postImage.forEach(imageName => {
+          const imagePath = '/imageUpload/' + imageName + '.png';
+          wx.cloud.deleteFile({
+            fileList: [imagePath],
+            success: res => {
+              console.log('图片储存更新成功', imagePath);
+            },
+            fail: error => {
+              console.error('图片储存更新失败', imagePath, error);
+            }
+          });
+        });
+        console.log('删除成功');
+        wx.reLaunch({
+          url: '/pages/home/home',
+        });
+      })
+      .catch(error => {
+        console.error('删除失败', error);
+      });
   },
   showPopUp(title, content, hasCancel) {
     wx.showModal({

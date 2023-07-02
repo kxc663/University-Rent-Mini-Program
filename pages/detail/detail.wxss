@@ -17,7 +17,7 @@
   gap: 10rpx;
 }
 
-.follow-button, .message-button, .collect-button {
+.follow-button, .message-button, .collect-button, .delete-button {
   width: 85rpx;
   font-size: 30rpx;
   background-color: #FFFFFF;

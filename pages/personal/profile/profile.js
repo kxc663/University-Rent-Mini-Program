@@ -67,7 +67,7 @@ Page({
       url: '/pages/detail/detail?post=' + JSON.stringify(this.data.collectList[event.currentTarget.dataset.postId])
     });
   },
-  viewPostDetail (event) {
+  viewPostDetail(event) {
     wx.navigateTo({
       url: '/pages/detail/detail?post=' + JSON.stringify(this.data.postList[event.currentTarget.dataset.postId])
     });
@@ -101,6 +101,21 @@ Page({
         _id: db.command.in(collectList)
       });
       query.get().then(res => {
+        const validCollectList = res.data.map(post => post._id);
+        const hasNoneExistId = collectList.filter(id => !validCollectList.includes(id));
+        if (hasNoneExistId.length > 0) {
+          const updatedCollectList = collectList.filter(id => !hasNoneExistId.includes(id));
+          user.collect_list = updatedCollectList;
+          db.collection('users').doc(user._id).update({
+            data: {
+              collect_list: updatedCollectList
+            }
+          }).then(() => {
+            console.log('更新收藏列表成功');
+          }).catch(err => {
+            console.error('更新收藏列表失败', err);
+          });
+        }
         this.setData({
           collectList: res.data
         });
@@ -110,8 +125,3 @@ Page({
     });
   }
 })
-/*
-Page({
-  
-  }
-})*/

@@ -7,6 +7,7 @@
       <button class="follow-button" bindtap="clickFollow" style="background-color: {{ isUserFollowed ? '#FFA500' : '#FFFFFF' }}" disabled="{{ isSelf }}">+</button>
       <button class="message-button" bindtap="clickMessage">私</button>
       <button class="collect-button" bindtap="clickCollect" style="background-color: {{ isPostCollected ? '#FFA500' : '#FFFFFF' }}">收</button>
+      <button class="delete-button" wx:if="{{ isSelf }}"bindtap="deletePost">删</button>
     </view>
   </view>
   <text>\n</text>

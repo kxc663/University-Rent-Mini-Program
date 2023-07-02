@@ -14,6 +14,7 @@ Page({
     selectedOptionIndex: 0,
     tempImageList: [],
     options: ['闲置出售', '房屋转租'],
+    isProcessing: false
   },
   onPickerChange(event) {
     const index = event.detail.value;
@@ -44,7 +45,7 @@ Page({
       return;
     }
     wx.chooseMedia({
-      count: 6 - images.length,
+      count: 1,
       mediaType: ['image', 'video'],
       sourceType: ['album', 'camera'],
       maxDuration: 15,
@@ -63,14 +64,20 @@ Page({
     });
   },
   uploadMedia(fileToUpload) {
+    this.setData({
+      isProcessing: true
+    });
     let fileName = this.getRandomFileName();
     wx.cloud.uploadFile({
       filePath: fileToUpload,
       cloudPath: 'imageUpload/' + fileName + '.png',
-      success(res) {
+      success: (res) => {
+        this.setData({
+          isProcessing: false
+        });
         console.log('图片上传成功');
       },
-      fail(error) {
+      fail: (error) =>{
         console.error('图片上传失败', error);
       }
     })
