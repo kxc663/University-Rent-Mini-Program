@@ -22,7 +22,7 @@
   </view>
   <view class="my-posts" wx:if="{{currentTab == 0}}">
     <block wx:for="{{postList}}" wx:key="index">
-      <view class="post-items" bindtap="viewCollectDetail" data-post-id="{{index}}">
+      <view class="post-items" bindtap="viewPostDetail" data-post-id="{{index}}">
         <view class="post-title" style="font-size: small; font-weight: bold;">{{item.title}}</view>
         <view class="post-title" style="font-size: small;">{{item.detail}}</view>
         <view class="image-container">

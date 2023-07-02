@@ -67,6 +67,11 @@ Page({
       url: '/pages/detail/detail?post=' + JSON.stringify(this.data.collectList[event.currentTarget.dataset.postId])
     });
   },
+  viewPostDetail (event) {
+    wx.navigateTo({
+      url: '/pages/detail/detail?post=' + JSON.stringify(this.data.postList[event.currentTarget.dataset.postId])
+    });
+  },
   updatePosts() {
     const username = app.globalData.username;
     db.collection('posts').where({
