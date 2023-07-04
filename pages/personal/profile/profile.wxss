@@ -1,5 +1,5 @@
 .profile-page {
-  padding-top: 70rpx;
+  padding-top: 30rpx;
   position: relative;
   height: 100vh;
 }
@@ -11,6 +11,18 @@
   background-color: #fff;
 }
 
+.logout-button {
+  width: 15rpx;
+  font-size: small;
+  margin-right: 25rpx;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+}
+
+.logout-button::after {
+  border: none;
+}
 .posts{
   position: sticky;
   top: 0;

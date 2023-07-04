@@ -8,19 +8,47 @@ const app = getApp();
 Page({
   data: {
     username: '',
-    password: ''
+    password: '',
+    rememberPassword: false
   },
-  inputUsername(e) {
+  onLoad(options) {
+
+  },
+  onShow() {
+    const username = wx.getStorageSync('username');
+    const password = wx.getStorageSync('password');
+    const rememberPassword = wx.getStorageSync('rememberPassword');
+    if (rememberPassword) {
+      this.setData({
+        username,
+        password,
+        rememberPassword: true,
+      });
+    }
+    if (app.globalData.isLogged) {
+      wx.redirectTo({
+        url: '/pages/personal/profile/profile',
+      })
+    }
+  },
+  inputUsername(event) {
     this.setData({
-      username: e.detail.value,
+      username: event.detail.value,
     });
   },
-  inputPassword(e) {
+  inputPassword(event) {
     this.setData({
-      password: e.detail.value,
+      password: event.detail.value,
     });
   },
-  login() {
+  onRememberPasswordTap(event) {
+    console.log(this.data.rememberPassword)
+    this.setData({
+      rememberPassword: !this.data.rememberPassword,
+    });
+
+  },
+  onLogin() {
     const {
       username,
       password
@@ -40,7 +68,19 @@ Page({
           wx.reLaunch({
             url: '/pages/home/home',
           });
-          console.log('登录成功');
+          wx.showToast({
+            title: '登陆成功',
+            icon: 'none',
+          });
+          if (this.data.rememberPassword) {
+            wx.setStorageSync('username', username);
+            wx.setStorageSync('password', password);
+            wx.setStorageSync('rememberPassword', true);
+          } else {
+            wx.removeStorageSync('username');
+            wx.removeStorageSync('password');
+            wx.removeStorageSync('rememberPassword');
+          }
         } else {
           this.showPopUp('注意', '用户名或密码错误，请重试', false);
         }
@@ -49,7 +89,7 @@ Page({
       }
     });
   },
-  register() {
+  onRegister() {
     const {
       username,
       password
@@ -76,19 +116,6 @@ Page({
       }
     });
   },
-
-  onLoad(options) {
-
-  },
-
-  onShow() {
-    if (app.globalData.isLogged) {
-      wx.reLaunch({
-        url: '/pages/personal/profile/profile',
-      })
-    }
-  },
-
   showPopUp(title, content, hasCancel) {
     wx.showModal({
       title: title,

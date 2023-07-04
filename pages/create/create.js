@@ -104,7 +104,7 @@ Page({
         optionIndex: selectedOptionIndex
       }
     }).then(res => console.log(res));
-    wx.reLaunch({
+    wx.redirectTo({
       url: '/pages/home/home',
     });
   },

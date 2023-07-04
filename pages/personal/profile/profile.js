@@ -16,7 +16,7 @@ Page({
   },
   onShow() {
     if (!app.globalData.isLogged) {
-      wx.reLaunch({
+      wx.redirectTo({
         url: '/pages/personal/login/login',
       })
     } else {
@@ -37,17 +37,22 @@ Page({
       this.updatePosts();
     }
   },
-  clickFollowing() {
+  onFollowingClick() {
     wx.navigateTo({
       url: './following/following',
     })
   },
-  clickFollower() {
+  onFollowerClick() {
     wx.navigateTo({
       url: './follower/follower',
     })
   },
-
+  onLogoutClick () {
+    app.globalData.isLogged = false;
+    wx.redirectTo({
+      url: '/pages/personal/login/login',
+    })
+  },
   onTabsChange(event) {
     const currentTab = event.detail.value;
     this.setData({

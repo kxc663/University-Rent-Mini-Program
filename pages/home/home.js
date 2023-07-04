@@ -50,7 +50,7 @@ Page({
   
   floatButtonClicked(event) {
     if (this.data.isLogged) {
-      wx.reLaunch({
+      wx.navigateTo({
         url: '/pages/create/create',
       })
     } else {

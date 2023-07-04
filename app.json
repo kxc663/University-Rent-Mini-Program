@@ -4,10 +4,10 @@
     "pages/message/message",
     "pages/create/create",
     "pages/detail/detail",
-    "pages/personal/login/login",
     "pages/personal/profile/profile",
     "pages/personal/profile/follower/follower",
-    "pages/personal/profile/following/following"
+    "pages/personal/profile/following/following",
+    "pages/personal/login/login"
   ],
   "tabBar": {
     "color": "#000000",
