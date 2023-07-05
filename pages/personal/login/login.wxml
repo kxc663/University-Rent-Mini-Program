@@ -4,6 +4,6 @@
     <input class="input" type="password" placeholder="密码" bindinput="inputPassword" value="{{password}}" />
     <checkbox class="checkbox" bindtap="onRememberPasswordTap" checked="{{rememberPassword}}">记住密码</checkbox>
     <button class="login-button" bindtap="onLogin">登录</button>
-    <button class="register-button" bindtap="onRegister">注册</button>
+    <button class="register-button" bindtap="onRegister">点击注册</button>
   </view>
 </view>

@@ -1,0 +1,17 @@
+<view class="container">
+  <view class="form">
+    <view class="username-input-container">
+      <input class="username-input" type="text" placeholder="用户名" bindinput="inputUsername" value="{{username}}" />
+      <view class="options-container">
+        <picker bindchange="onPickerChange" value="{{selectedOptionIndex}}" range="{{options}}" mode="selector">
+          <view class="picker">
+            <text>{{options[selectedOptionIndex]}}</text>
+          </view>
+        </picker>
+        <view class="arrow"></view>
+      </view>
+    </view>
+    <input class="password-input" type="password" placeholder="密码" bindinput="inputPassword" value="{{password}}" />
+    <button class="register-button" bindtap="onRegister">注册</button>
+  </view>
+</view>

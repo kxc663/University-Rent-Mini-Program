@@ -17,8 +17,7 @@
         <picker bindchange="onPickerChange" value="{{selectedOptionIndex}}" range="{{options}}" mode="selector">
           <view class="picker">
             <text>{{options[selectedOptionIndex]}}</text>
-          </view>
-          
+          </view> 
         </picker>
         <view class="arrow"></view>
       </view>

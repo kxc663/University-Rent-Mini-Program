@@ -90,30 +90,8 @@ Page({
     });
   },
   onRegister() {
-    const {
-      username,
-      password
-    } = this.data;
-    db.collection('users').where({
-      username: username
-    }).get().then(res => {
-      if (res.data.length > 0) {
-        this.showPopUp('注意', '该用户已存在，请使用其他用户名注册', false);
-      } else {
-        if (username.includes('@andrew.cmu.edu') && password.length >= 8) {
-          this.showPopUp('注册成功', '返回去登录吧！', false);
-          db.collection('users').add({
-            data: {
-              username: username,
-              password: password
-            }
-          }).then(res => console.log(res));
-        } else if (!username.includes('@andrew.cmu.edu')) {
-          this.showPopUp('注意', '邮箱必须是CMU.edu的邮箱', false);
-        } else {
-          this.showPopUp('注意', '密码长度需要至少8位', false);
-        }
-      }
+    wx.navigateTo({
+      url: '/pages/personal/register/register',
     });
   },
   showPopUp(title, content, hasCancel) {
