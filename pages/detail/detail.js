@@ -101,6 +101,7 @@ Page({
       db.collection('users').where({
         username: app.globalData.username
       }).get().then(res => {
+        const currentUser = res.data[0];
         const followList = res.data[0].following_list || [];
         if (followList.includes(this.data.post.username)) {
           const updatedFollowList = followList.filter(followedUsername => followedUsername !== this.data.post.username);
@@ -113,6 +114,7 @@ Page({
                 isUserFollowed: false
               });
               console.log('取消关注成功');
+              this.updateFollowerList(this.data.post.username, currentUser.username, false);
             },
             fail: err => console.error('取消关注失败', err)
           });
@@ -127,6 +129,7 @@ Page({
                 isUserFollowed: true
               });
               console.log('关注成功');
+              this.updateFollowerList(this.data.post.username, currentUser.username, true);
             },
             fail: err => console.error('关注失败', err)
           });
@@ -134,6 +137,30 @@ Page({
       });
       this.checkIfUserFollowed();
     }
+  },
+  updateFollowerList(followedUsername, followerUsername, isFollowing) {
+    console.log(1);
+    db.collection('users').where({
+      username: followedUsername
+    }).get().then(res => {
+      const followedUser = res.data[0];
+      const followerList = followedUser.follower_list || [];
+      if (isFollowing) {
+        followerList.push(followerUsername);
+      } else {
+        const updatedFollowerList = followerList.filter(username => username !== followerUsername);
+        followedUser.follower_list = updatedFollowerList;
+      }
+      db.collection('users').doc(followedUser._id).update({
+        data: {
+          follower_list: followerList
+        },
+        success: res => {
+          console.log('更新成功');
+        },
+        fail: err => console.error('更新失败', err)
+      });
+    });
   },
   deletePost() {
     const postId = this.data.post._id;

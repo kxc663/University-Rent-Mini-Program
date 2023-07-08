@@ -1,0 +1,17 @@
+<view class="follower-page">
+  <view class="my-follower">
+    <block wx:for="{{followerList}}" wx:key="index">
+      <view class="my-follower-list">
+        <view class="follower-profile-picture">
+          <image src="/images/profile-picture.jpg" style="width: 100rpx; height: 100rpx;"></image>
+        </view>
+        <view class="username-container">
+          <view class="follower-username">
+            {{item}}
+          </view>
+        </view>
+      </view>
+      <view class="divider-line"></view>
+    </block>
+  </view>
+</view>
