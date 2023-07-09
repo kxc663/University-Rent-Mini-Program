@@ -8,7 +8,8 @@
     "pages/personal/profile/follower/follower",
     "pages/personal/profile/following/following",
     "pages/personal/login/login",
-    "pages/personal/register/register"
+    "pages/personal/register/register",
+    "pages/personal/profile/profile_view/profile_view"
   ],
   "tabBar": {
     "color": "#000000",

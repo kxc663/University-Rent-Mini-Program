@@ -18,5 +18,10 @@ Page({
         followerList: res.data[0].follower_list
       })
     });
+  },
+  onProfileClick(event) {
+    wx.navigateTo({
+      url: '../profile_view/profile_view?user=' + JSON.stringify(this.data.followerList[event.currentTarget.dataset.postId])
+    })
   }
 })

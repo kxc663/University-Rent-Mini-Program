@@ -1,0 +1,47 @@
+.general-profile {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #fff;
+}
+
+.posts{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.profile-picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-name {
+  margin-top: 30rpx;
+  text-align: center;
+  font-size: medium;
+}
+
+.divider-line {
+  border-top: 1rpx solid #ccc;
+}
+
+.my-posts {
+  margin-left: 50rpx;
+}
+
+.image-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.post-images {
+  display: flex;
+  justify-content:flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 10rpx;
+  margin-top: -150rpx;
+  margin-bottom: -150rpx;
+}

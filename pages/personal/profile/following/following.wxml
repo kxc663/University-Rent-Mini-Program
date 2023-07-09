@@ -1,7 +1,7 @@
 <view class="following-page">
   <view class="my-following">
     <block wx:for="{{followingList}}" wx:key="index">
-      <view class="my-following-list">
+      <view class="my-following-list" bindtap="onProfileClick" data-post-id="{{index}}">
         <view class="following-profile-picture">
           <image src="/images/profile-picture.jpg" style="width: 100rpx; height: 100rpx;"></image>
         </view>

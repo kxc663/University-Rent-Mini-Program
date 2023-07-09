@@ -1,0 +1,24 @@
+<view class="general-profile">
+  <view class="profile-picture">
+    <image src="/images/profile-picture.jpg" style="width: 250rpx; height: 250rpx;"></image>
+  </view>
+  <view class="user-name">
+    {{username}}
+  </view>
+</view>
+<view class="divider-line"></view>
+<view class="my-posts">
+  <block wx:for="{{postList}}" wx:key="index">
+    <view class="post-items" bindtap="viewPostDetail" data-post-id="{{index}}">
+      <view class="post-title" style="font-size: small; font-weight: bold;">{{item.title}}</view>
+      <view class="post-title" style="font-size: small;">{{item.detail}}</view>
+      <view class="image-container">
+        <view class="post-images" wx:for='{{item.images}}' wx:for-item="img" wx:key="index" wx:if="{{index < 3}}" style="width:30%;">
+          <image class="image" src="{{'cloud://cloud1-3gm1islrf702afb9.636c-cloud1-3gm1islrf702afb9-1318853138/imageUpload/' + img + '.png'}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="divider-line"></view>
+  </block>
+  <view wx:if="{{postList.length === 0}}" class="empty-message">暂无发布的帖子</view>
+</view>
