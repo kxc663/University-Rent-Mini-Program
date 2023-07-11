@@ -48,7 +48,7 @@ Page({
       }
     }).catch(err => console.error('获取用户信息失败', err));
   },
-  clickCollect() {
+  onClickCollect() {
     if (!app.globalData.isLogged) {
       this.showPopUp('请先登陆', '收藏功能仅限登陆用户', false);
     } else {
@@ -89,12 +89,12 @@ Page({
       });
     }
   },
-  clickMessage() {
+  onClickMessage() {
     if (!app.globalData.isLogged) {
       this.showPopUp('请先登陆', '私信功能仅限登陆用户', false);
     }
   },
-  clickFollow() {
+  onClickFollow() {
     if (!app.globalData.isLogged) {
       this.showPopUp('请先登陆', '关注功能仅限登陆用户', false);
     } else {
@@ -137,6 +137,11 @@ Page({
       });
       this.checkIfUserFollowed();
     }
+  },
+  onClickUsername() {
+    wx.navigateTo({
+      url: '/pages/personal/profile/profile_view/profile_view?user=' + JSON.stringify(this.data.post.username)
+    })
   },
   updateFollowerList(followedUsername, followerUsername, isFollowing) {
     console.log(1);
