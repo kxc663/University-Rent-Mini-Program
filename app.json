@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/message/message",
     "pages/create/create",
     "pages/detail/detail",
     "pages/personal/profile/profile",
@@ -22,12 +21,6 @@
         "selectedIconPath": ""
       },
       {
-        "text": "消息",
-        "pagePath": "pages/message/message",
-        "iconPath": "",
-        "selectedIconPath": ""
-      },
-      {
         "text": "个人中心",
         "pagePath": "pages/personal/profile/profile",
         "iconPath": "",
@@ -43,6 +36,11 @@
   
   "useExtendedLib": {
     "weui": true
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于复制用户名到剪贴板"
+    }
   }
 }
 

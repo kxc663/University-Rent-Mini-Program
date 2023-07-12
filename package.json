@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "socket.io": "^4.7.1",
+    "socket.io-wxapp-client": "^1.1.12",
     "tdesign-miniprogram": "^1.1.10"
   }
 }

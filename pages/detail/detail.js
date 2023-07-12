@@ -9,9 +9,12 @@ const app = getApp();
 Page({
   data: {
     post: {},
+    comments: [],
+    commentInput: '',
     istPostCollected: false,
     isUserFollowed: false,
-    isSelf: false
+    isSelf: false,
+    isLogged: false
   },
   onLoad(options) {
     var post = JSON.parse(options.post);
@@ -19,6 +22,9 @@ Page({
       post: post
     });
     if (app.globalData.isLogged) {
+      this.setData({
+        isLogged: true
+      })
       this.checkIfPostCollected();
       this.checkIfUserFollowed();
     }
@@ -89,9 +95,22 @@ Page({
       });
     }
   },
-  onClickMessage() {
+  onClickCopy() {
     if (!app.globalData.isLogged) {
-      this.showPopUp('请先登陆', '私信功能仅限登陆用户', false);
+      this.showPopUp('请先登陆', '复制功能仅限登陆用户', false);
+    } else {
+      const username = this.data.post.username;
+
+      wx.setClipboardData({
+        data: username,
+        success: function () {
+          wx.showToast({
+            title: '已复制到剪贴板',
+            icon: 'success',
+            duration: 2000
+          });
+        }
+      });
     }
   },
   onClickFollow() {
@@ -193,6 +212,24 @@ Page({
       .catch(error => {
         console.error('删除失败', error);
       });
+  },
+  onCommentInput(event) {
+    this.setData({
+      commentInput: event.detail.value,
+    });
+  },
+  onCommentSubmit() {
+    const { commentInput } = this.data;
+    const newComment = {
+      username: app.globalData.username,
+      content: commentInput,
+    };
+    const { comments } = this.data;
+    comments.push(newComment);
+    this.setData({
+      comments,
+      commentInput: '',
+    });
   },
   showPopUp(title, content, hasCancel) {
     wx.showModal({
