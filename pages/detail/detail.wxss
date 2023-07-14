@@ -50,5 +50,59 @@
 }
 
 .comment-container {
-  padding-top: 10rpx;
+  background-color: #f7f7f7;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.comment-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.comment-list {
+  margin-bottom: 10px;
+}
+
+.comment-item {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.comment-username {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.comment-content {
+  margin-bottom: 5px;
+}
+
+.empty-message {
+  color: #999;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.comment-input-container {
+  margin-top: 10px;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.comment-submit {
+  margin-top: 5px;
+  background-color: #001aff;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
 }

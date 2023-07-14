@@ -28,7 +28,7 @@
       <view wx:if="{{comments.length === 0}}" class="empty-message">暂无评论</view>
     </view>
     <view class="comment-input-container">
-      <input class="comment-input" bindinput="onCommentInput" placeholder="请输入评论内容"></input>
+      <input class="comment-input" bindinput="onCommentInput" placeholder="请输入评论内容" value="{{ commentInput }}"></input>
       <button class="comment-submit" bindtap="onCommentSubmit">提交</button>
     </view>
   </view>

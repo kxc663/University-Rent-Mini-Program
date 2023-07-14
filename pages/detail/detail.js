@@ -23,10 +23,18 @@ Page({
     });
     if (app.globalData.isLogged) {
       this.setData({
-        isLogged: true
+        isLogged: true,
       })
       this.checkIfPostCollected();
       this.checkIfUserFollowed();
+      db.collection('posts').where({
+        _id: this.data.post._id
+      }).get().then(res => {
+        const commentList = res.data[0].comments || [];
+        this.setData({
+          comments: commentList
+        });
+      });
     }
   },
   checkIfPostCollected() {
@@ -219,17 +227,26 @@ Page({
     });
   },
   onCommentSubmit() {
-    const { commentInput } = this.data;
+    const {
+      commentInput
+    } = this.data;
     const newComment = {
       username: app.globalData.username,
       content: commentInput,
     };
-    const { comments } = this.data;
+    const {
+      comments
+    } = this.data;
     comments.push(newComment);
     this.setData({
       comments,
       commentInput: '',
     });
+    db.collection('posts').doc(this.data.post._id).update({
+      data: {
+        comments: this.data.comments
+      }
+    }).then(res => console.log(res));
   },
   showPopUp(title, content, hasCancel) {
     wx.showModal({
