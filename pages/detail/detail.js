@@ -14,12 +14,17 @@ Page({
     istPostCollected: false,
     isUserFollowed: false,
     isSelf: false,
-    isLogged: false
+    isLogged: false,
+    commentPlaceHolder: '',
+    isReplying: false
   },
   onLoad(options) {
     var post = JSON.parse(options.post);
     this.setData({
       post: post
+    });
+    this.setData({
+      commentPlaceHolder: "回复" + this.data.post.username
     });
     if (app.globalData.isLogged) {
       this.setData({
@@ -237,16 +242,67 @@ Page({
     const {
       comments
     } = this.data;
-    comments.push(newComment);
+    if (!this.data.isReplying) {
+      comments.push(newComment);
+      this.setData({
+        comments,
+        commentInput: '',
+      });
+      db.collection('posts').doc(this.data.post._id).update({
+        data: {
+          comments: this.data.comments
+        }
+      }).then(res => console.log(res));
+    } else {
+      console.log("is replying");
+    }
+
+  },
+  onClickPost(){
     this.setData({
-      comments,
-      commentInput: '',
+      commentPlaceHolder: "回复" + this.data.post.username,
+      isReplying: false
+    })
+  },
+  onTapComment(event) {
+    const index = event.currentTarget.dataset.index;
+    const {
+      comments
+    } = this.data;
+    this.setData({
+      commentPlaceHolder: "回复" + comments[index].username,
+      isReplying: true
     });
-    db.collection('posts').doc(this.data.post._id).update({
-      data: {
-        comments: this.data.comments
-      }
-    }).then(res => console.log(res));
+  },
+  onLongPressComment(event) {
+    const index = event.currentTarget.dataset.index;
+    const {
+      comments
+    } = this.data;
+    const deletedComment = comments[index];
+    const that = this;
+    if (deletedComment.username === app.globalData.username) {
+      const self = this;
+      wx.showActionSheet({
+        itemList: ['删除评论'],
+        success(res) {
+          if (res.tapIndex === 0) {
+            comments.splice(index, 1);
+            self.setData({
+              comments
+            });
+            db.collection('posts').doc(that.data.post._id).update({
+              data: {
+                comments: that.data.comments
+              }
+            }).then(res => console.log(res));
+          }
+        },
+        fail(res) {
+          console.log(res.errMsg);
+        }
+      });
+    }
   },
   showPopUp(title, content, hasCancel) {
     wx.showModal({
