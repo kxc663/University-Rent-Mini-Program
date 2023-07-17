@@ -106,3 +106,11 @@
   border: none;
   border-radius: 5px;
 }
+
+.comment-reply-container {
+  padding-left: 50rpx;
+}
+
+.reply-username {
+  color: #999;
+}

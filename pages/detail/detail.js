@@ -16,7 +16,8 @@ Page({
     isSelf: false,
     isLogged: false,
     commentPlaceHolder: '',
-    isReplying: false
+    isReplying: false,
+    replyIndex: -1
   },
   onLoad(options) {
     var post = JSON.parse(options.post);
@@ -238,6 +239,7 @@ Page({
     const newComment = {
       username: app.globalData.username,
       content: commentInput,
+      replyComments: []
     };
     const {
       comments
@@ -254,11 +256,30 @@ Page({
         }
       }).then(res => console.log(res));
     } else {
+      const newComment = this.data.comments;
+      const replyComment = {
+        username: app.globalData.username,
+        content: commentInput,
+      };
+      newComment[this.data.replyIndex].replyComments.push(replyComment);
+      console.log(newComment[this.data.replyIndex]);
+      this.setData({
+        comments: newComment,
+        commentInput: '',
+        replyIndex: -1,
+        isReplying: false,
+        commentPlaceHolder: "回复" + this.data.post.username
+      });
+      db.collection('posts').doc(this.data.post._id).update({
+        data: {
+          comments: this.data.comments
+        }
+      }).then(res => console.log(res));
       console.log("is replying");
     }
-
+    console.log(this.data.replyIndex);
   },
-  onClickPost(){
+  onClickPost() {
     this.setData({
       commentPlaceHolder: "回复" + this.data.post.username,
       isReplying: false
@@ -271,7 +292,8 @@ Page({
     } = this.data;
     this.setData({
       commentPlaceHolder: "回复" + comments[index].username,
-      isReplying: true
+      isReplying: true,
+      replyIndex: index
     });
   },
   onLongPressComment(event) {

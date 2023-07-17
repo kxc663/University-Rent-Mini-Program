@@ -27,6 +27,11 @@
         <text class="comment-username">{{ item.username }}</text>
         <text> \n </text>
         <text class="comment-content">{{ item.content }}</text>
+        <view class="comment-reply-container" wx:for="{{ item.replyComments }}" wx:key="index">
+          <text class="reply-username"> {{ item.username }} 回复{{ post.username }}</text>
+          <text> \n </text>
+          <text class="comment-content">{{ item.content }}</text>
+        </view>
       </view>
       <view wx:if="{{comments.length === 0}}" class="empty-message">暂无评论</view>
     </view>
