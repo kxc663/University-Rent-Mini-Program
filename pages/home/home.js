@@ -20,7 +20,12 @@ Page({
     isLogged: false,
     username: '',
     posts: {},
-    currentTab: 0
+    allPosts: {},
+    currentTab: 0,
+    currentRentNumber: 5,
+    currentSellNumber: 5,
+    showMoreRent: true,
+    showMoreSell: true
   },
   onLoad() {
     this.getPosts();
@@ -37,17 +42,34 @@ Page({
       });
     }
   },
+  /*
+  onScrollToLower() {
+    if (this.data.currentSellNumber < Object.keys(this.data.allPosts).length) {
+      const tempSellNumber = this.data.currentSellNumber;
+      console.log(1);
+      this.setData({
+        currentSellNumber: tempSellNumber + 5
+      })
+      this.loadNextPosts();
+    }
+  },
+  loadMorePosts(){
+    const currentPosts = this.data.posts;
+    const followPosts = Object.fromEntries(Object.entries(this.data.allPosts).slice(0, this.data.currentSellNumber));
+    this.setData({
+      posts: followPosts
+    });
+    console.log(this.data.allPosts);
+    console.log(this.data.posts);
+  },*/
   onHigerTabsChange(event) {
     this.setData({
       currentTab: event.detail.value
     });
-    console.log(this.data.currentTab);
   },
-
   onLowerTabsChange(event) {
     console.log(event.detail);
   },
-  
   floatButtonClicked(event) {
     if (this.data.isLogged) {
       wx.navigateTo({
@@ -64,9 +86,11 @@ Page({
   },
   getPosts() {
     db.collection('posts').get().then(res => {
+      
       this.setData({
         posts: res.data
       });
+      //this.loadMorePosts();
     }).catch(err => {
       console.error(err);
     });

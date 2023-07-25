@@ -14,10 +14,29 @@
     </view>
   </view>
 
-  <view class="posts" wx:if="{{currentTab == 0}}" style="padding-left: 50rpx;">
+  <view class="posts" wx:if="{{currentTab == 0 && showMoreSell}}" style="padding-left: 50rpx;">
     <text>\n</text>
     <block wx:for="{{posts}}" wx:key="index">
-      <view class="post-item" bindtap="viewPostDetail" data-post-id="{{index}}">
+      <view class="post-item" bindtap="viewPostDetail" data-post-id="{{index}}" wx:if="{{item.optionIndex == 0}}">
+        <text style="font-size: larger; font-weight: bold;">{{item.title}}</text>
+        <text>\n</text>
+        <text style="font-size: medium;">{{item.detail}}</text>
+        <view class="image-container">
+          <view class="post-images" wx:for='{{item.images}}' wx:for-item="img" wx:key="index" wx:if="{{index < 3}}" style="width:30%;">
+            <image class="image" src="{{'cloud://cloud1-3gm1islrf702afb9.636c-cloud1-3gm1islrf702afb9-1318853138/imageUpload/' + img + '.png'}}" mode="aspectFit"></image>
+          </view>
+        </view>
+        <text style="font-size: small; color: #ccc;">{{item.username}}</text>
+        <view class="space"></view>
+        <text>\n</text>
+      </view>
+    </block>
+  </view>
+
+  <view class="posts" wx:if="{{currentTab == 1 && showMoreRent}}" style="padding-left: 50rpx;">
+    <text>\n</text>
+    <block wx:for="{{posts}}" wx:key="index">
+      <view class="post-item" bindtap="viewPostDetail" data-post-id="{{index}}" wx:if="{{item.optionIndex !== 0}}">
         <text style="font-size: larger; font-weight: bold;">{{item.title}}</text>
         <text>\n</text>
         <text style="font-size: medium;">{{item.detail}}</text>
@@ -38,9 +57,5 @@
       <text class="float-button-text">+</text>
     </view>
   </view>
-  <!--
-  <t-tabs defaultValue="{{0}}" t-class="t-tabs" bind:change="onLowerTabsChange" theme="tag">
-    <t-tab-panel wx:for="{{tabList}}" wx:for-index="index" wx:key="index" label="{{item.text}}" value="{{item.key}}" />
-  </t-tabs>
-  -->
+
 </view>
